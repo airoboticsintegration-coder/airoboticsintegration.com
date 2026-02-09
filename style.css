@@ -5,7 +5,10 @@
     --dark: #1e293b;
     --gray: #64748b;
     --light-gray: #f1f5f9;
-    --white: #ffffff;
+    --border: #e2e8f0;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
 }
 
 * {
@@ -15,10 +18,10 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: var(--dark);
-    background: var(--white);
+    background: #fff;
 }
 
 .container {
@@ -29,12 +32,13 @@ body {
 
 /* Navigation */
 .navbar {
-    background: var(--white);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .navbar .container {
@@ -44,9 +48,15 @@ body {
 }
 
 .nav-brand {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand-icon {
+    font-size: 1.5rem;
 }
 
 .nav-links {
@@ -56,66 +66,103 @@ body {
 }
 
 .nav-links a {
+    color: white;
     text-decoration: none;
-    color: var(--gray);
     font-weight: 500;
-    transition: color 0.3s;
+    transition: opacity 0.2s;
 }
 
 .nav-links a:hover {
-    color: var(--primary);
+    opacity: 0.8;
 }
 
-.cta-button {
-    background: var(--primary);
-    color: var(--white) !important;
-    padding: 0.5rem 1.5rem;
-    border-radius: 6px;
-    transition: background 0.3s;
-}
-
-.cta-button:hover {
-    background: var(--primary-dark);
-}
-
-/* Hero Section */
+/* Hero */
 .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: var(--white);
-    padding: 6rem 0;
+    color: white;
+    padding: 5rem 0;
     text-align: center;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.3);
 }
 
 .hero h1 {
     font-size: 3rem;
-    font-weight: 800;
     margin-bottom: 1rem;
     line-height: 1.2;
 }
 
-.hero .subtitle {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
+.subtitle {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
     opacity: 0.95;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    line-height: 1.6;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 3rem 0;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
 }
 
 .hero-cta {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* Buttons */
+.cta-button {
+    background: white;
+    color: var(--primary);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .cta-button-large {
-    background: var(--white);
+    background: white;
     color: var(--primary);
     padding: 1rem 2rem;
     border-radius: 8px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.1rem;
     transition: transform 0.2s, box-shadow 0.2s;
     display: inline-block;
@@ -123,68 +170,287 @@ body {
 
 .cta-button-large:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
 .cta-button-secondary {
     background: transparent;
-    color: var(--white);
+    color: white;
     padding: 1rem 2rem;
-    border: 2px solid var(--white);
     border-radius: 8px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.1rem;
-    transition: background 0.3s;
+    border: 2px solid white;
+    transition: background 0.2s, transform 0.2s;
     display: inline-block;
 }
 
 .cta-button-secondary:hover {
     background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
 }
 
-/* Services Section */
-.services {
+/* Sections */
+section {
     padding: 5rem 0;
-    background: var(--white);
 }
 
-.services h2 {
-    text-align: center;
+section h2 {
     font-size: 2.5rem;
-    margin-bottom: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
     color: var(--dark);
 }
 
-/* Pricing Cards */
+.section-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--gray);
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+/* Capabilities Grid */
+.capability-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.capability-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.capability-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.capability-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.capability-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: var(--dark);
+}
+
+.capability-card p {
+    color: var(--gray);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.capability-list {
+    list-style: none;
+    padding: 0;
+}
+
+.capability-list li {
+    padding: 0.5rem 0;
+    color: var(--gray);
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.capability-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* Architecture Section */
+.architecture {
+    background: var(--light-gray);
+}
+
+.architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.architecture-tier {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    border-top: 4px solid;
+    position: relative;
+}
+
+.architecture-tier.high {
+    border-top-color: #8b5cf6;
+}
+
+.architecture-tier.medium {
+    border-top-color: #3b82f6;
+}
+
+.architecture-tier.low {
+    border-top-color: #10b981;
+}
+
+.tier-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.architecture-tier.high .tier-badge {
+    background: #f3e8ff;
+    color: #7c3aed;
+}
+
+.architecture-tier.medium .tier-badge {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.architecture-tier.low .tier-badge {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.architecture-tier h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.tier-model {
+    color: var(--gray);
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.architecture-tier ul {
+    list-style: none;
+    padding: 0;
+}
+
+.architecture-tier ul li {
+    padding: 0.4rem 0;
+    color: var(--gray);
+}
+
+.architecture-result {
+    margin-top: 3rem;
+}
+
+.result-box {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    border: 2px solid var(--primary);
+}
+
+.result-box h4 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cost-comparison {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.cost-before, .cost-after {
+    flex: 1;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.cost-before {
+    background: #fee2e2;
+}
+
+.cost-after {
+    background: #d1fae5;
+}
+
+.cost-label {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.cost-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.cost-before .cost-amount {
+    color: #dc2626;
+}
+
+.cost-after .cost-amount {
+    color: #059669;
+}
+
+.cost-desc {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.cost-arrow {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.architecture-note {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-style: italic;
+    color: var(--gray);
+}
+
+/* Pricing Grid */
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
-    margin-bottom: 4rem;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 3rem;
 }
 
 .pricing-card {
-    background: var(--white);
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 12px;
     padding: 2.5rem;
-    border-radius: 16px;
-    border: 2px solid var(--light-gray);
-    transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
-    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .pricing-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 }
 
 .pricing-card.featured {
     border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 4px 20px rgba(37,99,235,0.15);
 }
 
 .pricing-badge {
@@ -193,54 +459,54 @@ body {
     left: 50%;
     transform: translateX(-50%);
     background: var(--primary);
-    color: var(--white);
+    color: white;
     padding: 0.4rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
 }
 
-.pricing-card .service-icon {
-    font-size: 3.5rem;
+.service-icon {
+    font-size: 3rem;
+    text-align: center;
     margin-bottom: 1rem;
 }
 
 .pricing-card h3 {
-    font-size: 1.75rem;
+    text-align: center;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: var(--dark);
 }
 
 .price {
+    text-align: center;
     font-size: 3rem;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--primary);
-    margin-bottom: 0.5rem;
+    margin: 1rem 0;
 }
 
 .price-unit {
     font-size: 1.5rem;
-    font-weight: 400;
     color: var(--gray);
 }
 
 .pricing-subtitle {
+    text-align: center;
     color: var(--gray);
-    font-size: 1rem;
     margin-bottom: 1.5rem;
 }
 
 .pricing-features {
     list-style: none;
-    text-align: left;
+    padding: 0;
     margin: 2rem 0;
 }
 
 .pricing-features li {
-    padding: 0.75rem 0;
-    color: var(--dark);
-    font-size: 1rem;
-    border-bottom: 1px solid var(--light-gray);
+    padding: 0.7rem 0;
+    color: var(--gray);
+    border-bottom: 1px solid var(--border);
 }
 
 .pricing-features li:last-child {
@@ -249,178 +515,152 @@ body {
 
 .pricing-card .cta-button-large,
 .pricing-card .cta-button {
-    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0;
 }
 
-/* Service Grid (below pricing) */
-.service-grid {
+.pricing-note {
+    font-size: 0.85rem;
+    color: var(--gray);
+    text-align: center;
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* Proof Section */
+.proof {
+    background: var(--light-gray);
+}
+
+.proof-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
 }
 
-.service-card {
-    background: var(--light-gray);
-    padding: 2rem;
+.proof-card {
+    background: white;
     border-radius: 12px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 2rem;
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.service-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.service-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--dark);
-}
-
-.service-card p {
-    color: var(--gray);
-}
-
-/* Approach Section */
-.approach {
-    padding: 5rem 0;
-    background: var(--light-gray);
-}
-
-.approach h2 {
-    text-align: center;
+.proof-icon {
     font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--dark);
-}
-
-.approach-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-}
-
-.approach-text h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    margin-top: 1.5rem;
-    color: var(--dark);
-}
-
-.approach-text h3:first-child {
-    margin-top: 0;
-}
-
-.approach-text p {
-    color: var(--gray);
     margin-bottom: 1rem;
 }
 
-.proof-box {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.proof-box h4 {
-    font-size: 1.25rem;
+.proof-card h3 {
+    font-size: 1.3rem;
     margin-bottom: 1rem;
-    color: var(--dark);
 }
 
-.proof-box ul {
-    list-style: none;
-    margin-bottom: 1.5rem;
-}
-
-.proof-box li {
-    padding: 0.5rem 0;
+.proof-card p {
     color: var(--gray);
+    margin-bottom: 1rem;
+    line-height: 1.6;
 }
 
 .proof-link {
     color: var(--primary);
-    text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.5rem;
 }
 
 .proof-link:hover {
-    color: var(--primary-dark);
+    text-decoration: underline;
 }
 
-/* Results Section */
-.results {
-    padding: 5rem 0;
-    background: var(--white);
+.proof-showcase {
+    margin-top: 4rem;
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
 }
 
-.results h2 {
+.proof-showcase h3 {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--dark);
-}
-
-.results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 2rem;
 }
 
-.result-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: var(--white);
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
 }
 
-.result-metric {
-    font-size: 2rem;
+.showcase-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--light-gray);
+    border-radius: 8px;
+}
+
+.showcase-metric {
+    font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
 }
 
-.result-card p {
-    opacity: 0.95;
-}
-
-.results-note {
-    text-align: center;
+.showcase-item p {
     color: var(--gray);
-    font-style: italic;
-    max-width: 600px;
-    margin: 2rem auto 0;
+    font-size: 0.95rem;
+}
+
+/* Use Cases */
+.use-case-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.use-case-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.use-case-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.use-case-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.use-case-card ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.use-case-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
 }
 
 /* Contact Section */
 .contact {
-    padding: 5rem 0;
     background: var(--light-gray);
-}
-
-.contact h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--dark);
 }
 
 .contact-intro {
     text-align: center;
+    font-size: 1.2rem;
     color: var(--gray);
-    font-size: 1.1rem;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto 3rem;
 }
 
@@ -428,20 +668,19 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-bottom: 3rem;
+    margin: 3rem 0;
 }
 
 .contact-card {
-    background: var(--white);
-    padding: 2rem;
+    background: white;
     border-radius: 12px;
+    padding: 2rem;
     text-align: center;
 }
 
 .contact-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: var(--dark);
 }
 
 .contact-card p {
@@ -451,70 +690,191 @@ body {
 
 .contact-button {
     background: var(--primary);
-    color: var(--white);
-    padding: 0.75rem 2rem;
-    border-radius: 6px;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     display: inline-block;
-    transition: background 0.3s;
+    transition: background 0.2s, transform 0.2s;
 }
 
 .contact-button:hover {
     background: var(--primary-dark);
+    transform: translateY(-2px);
 }
 
 .contact-location {
     text-align: center;
-    color: var(--gray);
     margin-top: 3rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
 }
 
 .contact-location p {
+    font-size: 1.1rem;
+    color: var(--gray);
     margin: 0.5rem 0;
+}
+
+.contact-resources {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.contact-resources h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.resource-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.resource-links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--primary);
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.resource-links a:hover {
+    background: var(--primary);
+    color: white;
 }
 
 /* Footer */
 footer {
     background: var(--dark);
-    color: var(--white);
-    padding: 2rem 0;
-    text-align: center;
+    color: white;
+    padding: 3rem 0 1.5rem;
 }
 
-footer p {
-    margin: 0.5rem 0;
-    opacity: 0.8;
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.footer-brand p {
+    color: rgba(255,255,255,0.7);
+    margin-top: 1rem;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.footer-column h4 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.footer-column a {
+    display: block;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+}
+
+.footer-column a:hover {
+    color: white;
+}
+
+.footer-location {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-bottom p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+    }
+    
     .nav-links {
         gap: 1rem;
         font-size: 0.9rem;
     }
     
-    .hero h1 {
+    section h2 {
         font-size: 2rem;
     }
     
-    .hero .subtitle {
-        font-size: 1rem;
-    }
-    
-    .approach-content {
-        grid-template-columns: 1fr;
-    }
-    
+    .capability-grid,
+    .architecture-grid,
     .pricing-grid,
-    .service-grid,
-    .results-grid,
+    .proof-grid,
+    .use-case-grid,
     .contact-options {
         grid-template-columns: 1fr;
     }
     
-    .pricing-card {
-        padding: 2rem 1.5rem;
+    .cost-comparison {
+        flex-direction: column;
+    }
+    
+    .cost-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .nav-brand {
+        font-size: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
     }
     
     .price {
